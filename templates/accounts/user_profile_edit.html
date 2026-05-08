@@ -1,0 +1,28 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>User Profile Edit</h1>
+<form  method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <p>{{ form.email.label }} {{ form.email }} {{ form.email.error }}</p>
+    <p>{{ form.first_name.label }} {{ form.first_name }} {{ form.first_name.error }}</p>
+    <p>{{ form.patronymic.label }} {{ form.patronymic }} {{ form.patronymic.error }}</p>
+    <p>{{ form.last_name.label }} {{ form.last_name }} {{ form.last_name.error }}</p>
+    <p>{{ form.phone.label }} {{ form.phone }} {{ form.phone.help_text }} {{ form.phone.error }}</p>
+    <p>{{ form.male.label }} {{ form.male }} {{ form.male.error }}</p>
+    <p>{{ form.female.label }} {{ form.female }} {{ form.female.error }}</p>
+    <p>{{ form.date_of_birth.label }} {{ form.date_of_birth }} {{ form.date_of_birth.error }}</p>
+
+    <input type="submit"  value="Save ">
+</form>
+
+{% endblock %}

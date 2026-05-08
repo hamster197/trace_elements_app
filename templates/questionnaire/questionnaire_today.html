@@ -1,0 +1,28 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>Today Questionnair Edit</h1>
+<form  method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <p>{{ form.height.label }} {{ form.height }} {{ form.height.errors }}</p>
+    <p>{{ form.weight.label }} {{ form.weight }} {{ form.weight.errors }} </p>
+    <p>{{ form.load_intensity_id.label }} {{ form.load_intensity_id }} {{ form.load_intensity_id.errors }}</p>
+    <p>{{ form.type_of_activity_id.label }} {{ form.type_of_activity_id }} {{ form.type_of_activity_id.errors }}</p>
+    <p>{{ form.goal_choises.label }} {{ form.goal_choises }} {{ form.goal_choises.help_text }} {{ form.goal_choises.errors }}</p>
+    <p>{{ form.favorite_foods_id.label }} {{ form.favorite_foods_id }} {{ form.favorite_foods_id.errors }}</p>
+    <p>{{ form.not_favorite_foods_id.label }} {{ form.not_favorite_foods_id }} {{ form.not_favorite_foods_id.errors }}</p>
+    <p>{{ form.date_of_birth.label }} {{ form.date_of_birth }} {{ form.date_of_birth.errors }}</p>
+
+    <input type="submit"  value="Save ">
+</form>
+
+{% endblock %}

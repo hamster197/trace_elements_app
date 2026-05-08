@@ -1,0 +1,20 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1> Get recomendation {{ recomendation.creation_date }}</h1>
+<p>BODY MASS INDEX {{ recomendation.imt|floatformat:2 }} Basal metabolism {{ recomendation.bmr|floatformat:2 }} Daily calorie intake {{ recomendation.KKAL|floatformat:2 }}</p>
+<p>{{ recomendation_text.title }}</p>
+<p>{{ recomendation_text.discription }}</p>
+
+<h1>Nutrition Composition</h1>
+{% for subj in recomendation_text.nutrition_composition_recomendation_id.all %}
+<p>title {{ subj.title }} dimension {{ subj.dimension }}</p>
+{% endfor %}
+
+<h1>Elements </h1>
+{% for subj in recomendation.nutrition_result_recomendation_id.all %}
+<p> {{ subj.elements_id.elements_id }} {{ subj.elements_id.value }} {{ subj.elements_id.discription }}</p>
+{% endfor %}
+
+{% endblock %}
+

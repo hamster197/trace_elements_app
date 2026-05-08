@@ -1,0 +1,24 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>questionnaire (test)</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    {% for form in formset %}
+
+    {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+    {% endfor %}
+
+    <strong> {{ form.instance.text }}</strong>
+    <p>{{ form.answer_field.label }} {{ form.answer_field }} {{ form.answer_field.errors }}</p>
+    {% endfor %}
+
+    <input type="submit" value="Save">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1> List recomendation </h1>
+{% for instance in instances %}
+<p><a href="{% url "recomendations_urls:detail_recomendation_url" pk=instance.pk %}">{{ instance.creation_date }}</a></p>
+{% endfor %}
+{% endblock %}

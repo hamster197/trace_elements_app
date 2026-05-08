@@ -1,0 +1,48 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<h1>User Data</h1>
+<p>login {{ user }}</p>
+<p>name  {{ user.last_name }} {{ user.first_name }} {{ user.patronymic }}</p>
+<p>phone {{ user.phone }} email {{ user }}</p>
+<p>sex {% if user.male %} male {% else %} female %}} {% endif %}</p>
+<p>date of birth {{ user.date_of_birth }}</p>
+<p>date joined {{ user.date_joined }}</p>
+<p><a href="{% url "accounts_urls:user_profile_edit_url" %}">edit user profile </a>/ <a href="{% url "accounts_urls:password_change" %}">change password </a></p>
+
+
+<strong>Questionnaires</strong>
+{% if instances.count != 0 %}
+    <p><a href="{% url "questionnaire_urls:questionnaire_today_url" %}">{% if questionnaire_today %} change today questionnaire  {% else %} create today questionnaire  {% endif %}</a></p>
+
+{% endif %}
+
+
+{% for instance in instances  %}
+<p>{{ instance.creation_date }} <a href="{% url "questionnaire_urls:questionnaire_detail_url" pk=instance.pk %}">Detail</a></p>
+{% endfor %}
+
+
+
+{% if is_paginated %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li>
+        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+    </li>
+    {% endif %}
+    <li class="">
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. {{ instances.count}}</span>
+    </li>
+    {% if page_obj.has_next %}
+    <li>
+        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+
+
+{% endblock %}
+

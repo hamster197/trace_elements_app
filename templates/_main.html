@@ -1,0 +1,24 @@
+{% load static %}
+
+
+
+{% if user.is_authenticated %}
+<p> {{ user.last_name }} {{ user.first_name|slice:"1" }}. {{ user.patronymic|slice:"1" }}. </p>
+
+
+<form method="post" action="{% url 'accounts_urls:logout_url' %}">
+    {% csrf_token %}
+    <button class="lr-button lr-button-primary lr-button-small lr-text-small" type="submit">Exit</button>
+</form>
+
+
+
+{% else %}
+<a href="{% url "accounts_urls:login_url"  %}" >Login</a>
+<a href="{% url "accounts_urls:register_url"  %}" >Register</a>
+{%endif %}
+
+{% block content %}
+
+{% endblock %}
+{% if request.resolver_match.view_name != 'accounts_urls:dashboard_url' %} <button onclick="window.history.back()">Назад</button> {% endif %}

@@ -1,0 +1,22 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1 xmlns:questionnaire_urls="http://www.w3.org/1999/xhtml" xmlns:questionnaire_urls="http://www.w3.org/1999/xhtml">Dashboard </h1>
+<a href="{% url "accounts_urls:user_data_url" %}">{% if questionnaire_today %} change profile data {% else %} create new profile data {% endif %}</a>
+
+<a href="{% url "questionnaire_urls:questions_url" %}">Surveys</a>
+
+<h1>recomendations block</h1>
+
+
+{% if user.questionnaire_user_id.first.height == 0 %} Add height to get a recommendation
+{% elif user.questionnaire_user_id.first.weight == 0 %} Add weight to get a recommendation
+{% elif not quize_result %}
+<a href="{% url "questionnaire_urls:questions_url" %}">Complete the survey to receive a recommendation</a>
+{% else %}
+<a href="{% url "recomendations_urls:get_recomendation_url"  %}" >get today recommendation</a>
+{% endif %}
+<a href="{% url "recomendations_urls:list_recomendation_url"  %}" >get all recommendation list</a>
+
+{% endblock %}
+

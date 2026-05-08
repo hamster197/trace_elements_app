@@ -1,0 +1,15 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>Questionnaire Detail {{ instance.creation_date }}</h1>
+
+<p>height {{ instance.height }}</p>
+<p>weight {{ instance.weight }}</p>
+<p>load intensity {{ instance.load_intensity_id }}</p>
+<p>type of activity {% for inst in instance.type_of_activity_id.all %} {{ inst }}, {% endfor %}</p>
+<p>goal {{ instance.get_goal_choises_display }}</p>
+<p>favorite foods {% for inst in instance.favorite_foods_id.all %} {{ inst }}, {% endfor %}</p>
+<p>not favorite foods {% for inst in instance.not_favorite_foods_id.all %} {{ inst }}, {% endfor %}</p>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends '_main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>questionnaires Detail ({{ instance.creation_date }})</h1>
+
+<p>Top elements</p>
+{% for element in top %}
+<p>{{ element.pk }}{{ element.element_id }} estimation {{ element.estimation }} percent {{ element.percent }}</p>
+{% endfor %}
+
+<p>all elements</p>
+{% for element in instance.quize_result_id.all %}
+<p>{{ element.element_id }} estimation {{ element.estimation }} percent {{ element.percent }} max estimation {{ element.get_max }}
+    Уровень {{ element.get_status_element }}
+</p>
+</p>
+{% endfor %}
+
+{% endblock %}

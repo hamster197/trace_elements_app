@@ -1,0 +1,34 @@
+{% extends '_main.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>Register</h1>
+<form class="lr-form-stacked" id="login" method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p>{{ form.email.label }} {{ form.email.help_text }} {{ form.email }} {{ form.email.errors }}</p>
+    <p>{{ form.first_name.label }} {{ form.first_name.help_text }} {{ form.first_name }} {{ form.first_name.errors }}</p>
+    <p>{{ form.last_name.label }} {{ form.last_name.help_text }} {{ form.last_name }} {{ form.last_name.errors }}</p>
+    <p>{{ form.patronymic.label }} {{ form.patronymic.help_text }}  {{ form.patronymic }} {{ form.patronymic.errors }}</p>
+    <p>{{ form.phone.label }} {{ form.phone.help_text }} {{ form.phone }} {{ form.phone.errors }}</p>
+    <p>{{ form.male.label }} {{ form.male }} {{ form.male.errors }}</p>
+    <p>{{ form.female.label }} {{ form.female }} {{ form.female.errors }}</p>
+    <p>{{ form.password1.label }} {{ form.password1 }} {{ form.password1.errors }} {{ form.password1.help_text }}</p>
+    <p>{{ form.password2.label }} {{ form.password2 }} {{ form.password2.errors }} {{ form.password2.help_text }}</p>
+
+    <input type="submit" value="Register" class="lr-button lr-button-default lr-width-1-1 lr-text-xsmall" >
+</form>
+
+<a href="{% url "accounts_urls:login_url"  %}" >Login</a>
+
+
+{% endblock %}
