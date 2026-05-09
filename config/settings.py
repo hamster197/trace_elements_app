@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,9 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from django.urls import reverse_lazy
 
 import os
-# from os import environ
-
-import environ
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,7 +28,6 @@ import environ
 SECRET_KEY = os.environ.get('SAIT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 ALLOWED_HOSTS = ['0.0.0.0',]
 
 LOCAL = int(os.environ.get('LOCAL', default=0))
