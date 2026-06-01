@@ -51,6 +51,3 @@ urlpatterns = [
     path('questionnaire/', include('apps.questionnaire.urls', )),
     path('recomendations/', include('apps.recomendations.urls', )),
 ]
-
-if LOCAL:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
